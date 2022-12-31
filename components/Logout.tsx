@@ -20,7 +20,7 @@ const Logout = () => {
   }, [isSuccess, router]);
 
   return (
-    <Button type='button' intent='primary' onClick={handleClick}>
+    <Button type='button' intent='secondary' onClick={handleClick}>
       Logout {isLoading ? <Spinner /> : null}
     </Button>
   );

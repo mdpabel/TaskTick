@@ -24,7 +24,9 @@ const handler = nc<NextApiRequest, NextApiResponse>({
     })
   );
 
-  res.status(200).json({});
+  res.status(200).json({
+    data: 'You have been successfully logged out',
+  });
 });
 
 export default handler;
