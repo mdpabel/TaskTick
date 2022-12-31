@@ -18,6 +18,8 @@ export async function client(url: string, { data, method }: configType) {
   const res = await fetch(url, { ...config });
   const resData = await res.json();
 
+  console.log(res);
+
   if (res.ok) {
     return resData;
   } else {

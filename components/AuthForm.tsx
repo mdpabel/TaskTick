@@ -1,6 +1,6 @@
 'use client';
 
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { CardBody, CardHeader, CardWrapper } from './Card';
 import Input from './Input';
 import Button from './Button';
@@ -42,6 +42,7 @@ const AuthForm = ({ mode }: { mode: modeType }) => {
   const { data, error, isLoading, isError, isSuccess, run } = useAsync();
   const [formState, setFormState] = useState(initialState);
   const router = useRouter();
+  const [redirectOnLogin, setRedirectOnLogin] = useState(false);
 
   const content = mode === 'register' ? registerContent : signInContent;
   const { firstName, lastName, email, password } = formState;
@@ -53,10 +54,13 @@ const AuthForm = ({ mode }: { mode: modeType }) => {
     } else if (mode === 'signin') {
       run(() => signIn({ email, password }));
     }
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 400);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.replace('/dashboard');
+    }
+  }, [isSuccess, router]);
 
   return (
     <CardWrapper>

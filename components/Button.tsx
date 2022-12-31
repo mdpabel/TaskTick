@@ -43,11 +43,16 @@ interface ButtonProps
   extends HTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonStyles> {
   type: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
 }
 
-const Button: FC<ButtonProps> = ({ children, intent, size, type }) => {
+const Button: FC<ButtonProps> = ({ children, intent, size, type, onClick }) => {
   return (
-    <button type={type} className={buttonStyles({ intent, size })}>
+    <button
+      onClick={onClick}
+      type={type}
+      className={buttonStyles({ intent, size })}
+    >
       {children}
     </button>
   );

@@ -42,3 +42,12 @@ export const signIn = async ({ email, password }: SignInProps) => {
 
   return data;
 };
+
+export const logout = async () => {
+  const data = client('/api/logout', {
+    data: {},
+    method: 'POST',
+  });
+
+  return data;
+};
