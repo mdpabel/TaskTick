@@ -5,6 +5,7 @@ import { useAsync } from './../hooks/useAsync';
 import { useRouter } from 'next/navigation';
 import Button from './Button';
 import Spinner from './Spinner';
+import ArrowRight from './icons/ArrowRight';
 
 const Logout = () => {
   const router = useRouter();
@@ -20,8 +21,8 @@ const Logout = () => {
   }, [isSuccess, router]);
 
   return (
-    <Button type='button' intent='secondary' onClick={handleClick}>
-      Logout {isLoading ? <Spinner /> : null}
+    <Button type='button' intent='logout' onClick={handleClick}>
+      Logout {isLoading ? <Spinner /> : <ArrowRight />}
     </Button>
   );
 };

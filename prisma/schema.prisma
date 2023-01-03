@@ -49,6 +49,7 @@ model Task {
   name        String
   description String?
   status      TASK_STATUS @default(NOT_STARTED)
+  deadline    DateTime?
 
   owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String

@@ -26,6 +26,7 @@ const buttonStyles = cva(
           'border-gray-400',
           'hover:bg-gray-100',
         ],
+        logout: ['bg-gray-200', 'text-black', 'hover:bg-gray-50'],
       },
       size: {
         small: ['text-sm', 'py-1', 'px-2'],

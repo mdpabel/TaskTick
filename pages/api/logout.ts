@@ -13,8 +13,6 @@ const handler = nc<NextApiRequest, NextApiResponse>({
 }).post(async (req, res) => {
   const token = req.cookies[process.env.COOKIES_NAME] as string;
 
-  console.log(token);
-
   res.setHeader(
     'Set-Cookie',
     serialize(process.env.COOKIES_NAME, token, {

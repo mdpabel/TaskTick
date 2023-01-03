@@ -10,7 +10,7 @@ const CardHeader = ({ children }: ChildrenProps) => {
 
 const CardWrapper = ({ children }: ChildrenProps) => {
   return (
-    <div className='px-10 py-16 m-8 bg-white border rounded shadow'>
+    <div className='relative px-10 py-16 m-8 bg-white border rounded shadow'>
       {children}
     </div>
   );
