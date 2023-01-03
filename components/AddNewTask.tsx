@@ -16,15 +16,15 @@ type ProjectType = {
 };
 
 const AddNewTask = () => {
-  // const { run, isLoading, isSuccess, isError, data, error } =
-  //   useAsync<ProjectType>();
+  const { run, isLoading, isSuccess, isError, data, error } =
+    useAsync<ProjectType>();
 
-  // useEffect(() => {
-  //   const res = client('/api/project', {});
-  //   run(() => res);
-  // }, [run]);
+  useEffect(() => {
+    const res = client('/api/project', {});
+    run(() => res);
+  }, [run]);
 
-  // const projects = data?.data;
+  const projects = data?.data;
 
   return (
     <form className='space-y-4'>
@@ -77,7 +77,7 @@ const AddNewTask = () => {
         </div>
       </InputWrapper>
 
-      {/* <InputWrapper>
+      <InputWrapper>
         <Label htmlFor='project'>Select project</Label>
         {isLoading ? (
           'Loading....'
@@ -97,7 +97,7 @@ const AddNewTask = () => {
               })}
           </select>
         )}
-      </InputWrapper> */}
+      </InputWrapper>
 
       <Button type='submit'>+ Create new Task</Button>
     </form>
