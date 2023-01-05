@@ -57,10 +57,17 @@ export const Label = ({ children, htmlFor }: LabelType) => {
   );
 };
 
-export const TextArea = ({ placeholder, id }: InputProps) => {
+export const TextArea = ({
+  placeholder,
+  id,
+  value = '',
+  onChange,
+}: InputProps) => {
   return (
     <textarea
+      value={value}
       rows={5}
+      onChange={(e) => onChange(e.target.value)}
       className='w-full px-4 py-1 border-2 border-solid rounded outline-none text-md border-gray focus:border-gray-300'
       placeholder={placeholder}
       id={id}

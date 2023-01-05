@@ -5,7 +5,7 @@ interface configType {
   method?: 'POST' | 'PUT' | 'DELETE';
 }
 
-export async function client(url: string, { data, method }: configType) {
+export async function client(url: string, { data, method }: configType = {}) {
   const config = {
     method: method ? method : 'GET',
     body: data ? JSON.stringify(data) : undefined,

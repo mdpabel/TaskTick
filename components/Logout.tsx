@@ -11,7 +11,7 @@ const Logout = () => {
   const router = useRouter();
   const { run, data, isSuccess, error, isLoading } = useAsync();
   const handleClick = async () => {
-    run(() => logout());
+    run(logout());
   };
 
   useEffect(() => {

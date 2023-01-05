@@ -6,17 +6,18 @@ import Title from '@components/Title';
 
 const AddNew = () => {
   return (
-    <div className='flex space-x-10'>
-      <div className='w-1/3 space-y-10'>
+    <div className='flex flex-col space-y-10 md:space-x-10 md:flex-row'>
+      <div className='w-full space-y-10 md:w-1/3'>
         <AddNewProject />
         <div>
           <Title>List of projects</Title>
-          <Suspense fallback='Loading...'>
+          <Suspense fallback='Project Loading...'>
+            {/* @ts-expect-error Server Component */}
             <Projects />
           </Suspense>
         </div>
       </div>
-      <div className='w-1/3'>
+      <div className='w-full md:w-1/3'>
         <AddNewTask />
       </div>
     </div>

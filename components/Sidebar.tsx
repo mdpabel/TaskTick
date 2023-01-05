@@ -71,7 +71,7 @@ const Sidebar = () => {
     <div className='relative z-50 flex'>
       <div
         className={clsx({
-          'absolute h-full min-h-screen text-gray-900 bg-white shadow sm:flex sm:relative w-80':
+          'absolute h-full min-h-screen text-gray-900 bg-white shadow md:flex md:relative w-80':
             true,
           hidden: !isOpen,
           flex: isOpen,
@@ -80,13 +80,13 @@ const Sidebar = () => {
         <div className='flex flex-col justify-between h-full min-h-[95vh]'>
           <div>
             <div className='px-8 py-10'>
-              <Link href='/dashboard'>
+              <Link onClick={() => setIsOpen(false)} href='/dashboard'>
                 <Image src={logo} alt='Logo' width={120} />
               </Link>
             </div>
             <ul>
               {sidebarLinks.map(({ label, Icon, link }) => (
-                <Link key={label} href={link}>
+                <Link onClick={() => setIsOpen(false)} key={label} href={link}>
                   <li
                     className={clsx({
                       'flex px-8 py-3 space-x-4 text-gray-900 cursor-pointer':
@@ -121,7 +121,7 @@ const Sidebar = () => {
 
       <div
         className={clsx({
-          'absolute right-[-25px] top-8 sm:hidden': true,
+          'absolute right-[-25px] top-8 md:hidden': true,
           'right-[-345px]': isOpen,
         })}
       >

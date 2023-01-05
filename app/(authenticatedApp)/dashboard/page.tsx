@@ -7,7 +7,10 @@ const Dashboard = () => {
   return (
     <div className='flex flex-col space-x-8 sm:flex-row'>
       <div className='w-full sm:w-2/3'>
-        <Greeting />
+        <Suspense fallback={<h1>Greeting Loading...</h1>}>
+           {/* @ts-expect-error Server Component */}
+          <Greeting />
+        </Suspense>
         <Suspense fallback={<h1>Loading...</h1>}>
           <Activities />
         </Suspense>

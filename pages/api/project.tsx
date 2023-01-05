@@ -2,8 +2,10 @@ import nc from 'next-connect';
 import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@db/postgresql';
 import { verifyToken } from '@utils/jwtToken';
+import { auth } from '@middlewares/auth';
+import { ReqType } from 'types/reqType';
 
-const handler = nc<NextApiRequest, NextApiResponse>({
+const handler = nc<ReqType, NextApiResponse>({
   onError: (err, req, res, next) => {
     console.error(err.stack);
     res.status(500).end('Something broke!');
@@ -11,26 +13,41 @@ const handler = nc<NextApiRequest, NextApiResponse>({
   onNoMatch: (req, res) => {
     res.status(404).end('Page is not found!');
   },
-}).get(async (req, res) => {
-  const token = req.cookies[process.env.COOKIES_NAME];
-  if (!token) {
-    return res.status(401).json({
-      data: 'Unauthorized user',
+})
+  .use(auth)
+  .get(async (req, res) => {
+    const user = req.user;
+
+    const projects = await prisma.project.findMany({
+      where: {
+        ownerId: user.id,
+      },
     });
-  }
 
-  const user = verifyToken(token);
-
-  if (!user) {
-    return res.status(401).json({
-      data: 'Unauthorized user',
+    res.status(200).json({
+      data: projects,
     });
-  }
+  })
+  .post(async (req, res) => {
+    try {
+      const user = req.user;
+      const newProject = await prisma.project.create({
+        data: {
+          name: req.body.name,
+          description: req.body.description,
+          ownerId: user.id,
+        },
+      });
 
-  const projects = await prisma.project.findMany();
-  res.status(200).json({
-    data: projects,
+      res.status(201).json({
+        data: newProject,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        data: 'Something went wrong',
+      });
+    }
   });
-});
 
 export default handler;

@@ -22,8 +22,8 @@ const Project = ({ project }: { project: ProjectType }) => {
   return <div>{project.name}</div>;
 };
 
-const Projects = () => {
-  const projects = use(getData());
+const Projects = async () => {
+  const projects = await getData();
 
   return (
     <div>

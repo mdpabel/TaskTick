@@ -1,30 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Button from '@components/Button';
 import Input, { Label, TextArea } from '@components/Input';
 import { InputWrapper } from '@components/Input';
 import Title from '@components/Title';
 import { client } from '@utils/apiClient';
 import { useAsync } from './../hooks/useAsync';
-import { Prisma } from '@prisma/client';
-
-const project = Prisma.validator<Prisma.ProjectArgs>()({});
-
-type ProjectType = {
-  data: Prisma.ProjectGetPayload<typeof project>[];
-};
+import { ProjectsType } from 'types/projectType';
 
 const AddNewTask = () => {
-  const { run, isLoading, isSuccess, isError, data, error } =
-    useAsync<ProjectType>();
+  const { run, isLoading, data: projects } = useAsync<ProjectsType>();
 
   useEffect(() => {
     const res = client('/api/project', {});
-    run(() => res);
+    run(res);
   }, [run]);
-
-  const projects = data?.data;
 
   return (
     <form className='space-y-4'>

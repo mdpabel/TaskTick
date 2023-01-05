@@ -18,7 +18,7 @@ const alertStyles = cva(['text-center p-2 rounded mb-8 font-bold'], {
 });
 
 interface AlertProps extends VariantProps<typeof alertStyles> {
-  children: ReactNode;
+  children: ReactNode | any;
 }
 
 const Alert: FC<AlertProps> = ({ children, intent }) => {

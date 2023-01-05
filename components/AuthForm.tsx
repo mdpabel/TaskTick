@@ -10,6 +10,7 @@ import { useAsync } from './../hooks/useAsync';
 import Alert from './Alert';
 import Spinner from './Spinner';
 import { useRouter } from 'next/navigation';
+import { UserType } from 'types/userType';
 
 const registerContent = {
   linkUrl: '/login',
@@ -39,10 +40,10 @@ const initialState = {
 type modeType = 'register' | 'signin';
 
 const AuthForm = ({ mode }: { mode: modeType }) => {
-  const { data, error, isLoading, isError, isSuccess, run } = useAsync();
+  const { data, error, isLoading, isError, isSuccess, run } =
+    useAsync<UserType>();
   const [formState, setFormState] = useState(initialState);
   const router = useRouter();
-  const [redirectOnLogin, setRedirectOnLogin] = useState(false);
 
   const content = mode === 'register' ? registerContent : signInContent;
   const { firstName, lastName, email, password } = formState;
@@ -50,9 +51,9 @@ const AuthForm = ({ mode }: { mode: modeType }) => {
   const handleFormSubmission = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (mode === 'register') {
-      run(() => register({ firstName, lastName, email, password }));
+      run(register({ firstName, lastName, email, password }));
     } else if (mode === 'signin') {
-      run(() => signIn({ email, password }));
+      run(signIn({ email, password }));
     }
   };
 
@@ -69,8 +70,8 @@ const AuthForm = ({ mode }: { mode: modeType }) => {
         <p className='text-lg text-black/75'>{content.subHeader}</p>
       </CardHeader>
 
-      {isError && <Alert intent='danger'>{error?.data}</Alert>}
-      {isSuccess && <Alert intent='success'>{data?.data}</Alert>}
+      {isError && <Alert intent='danger'>{error}</Alert>}
+      {isSuccess && <Alert intent='success'>{data}</Alert>}
 
       <CardBody>
         <form onSubmit={handleFormSubmission} className='space-y-6'>

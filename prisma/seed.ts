@@ -14,14 +14,13 @@ const getRandomTaskStatus = () => {
 async function main() {
   const user = await prisma.user.create({
     data: {
-      email: 'user@email.com',
-      firstName: 'User',
-      lastName: 'Person',
-      password: await hashPassword('password'),
+      email: 'md@test.com',
+      firstName: 'MD',
+      lastName: 'Pabel',
+      password: await hashPassword('md@test.com'),
       projects: {
         create: new Array(5).fill(1).map((_, i) => ({
           name: `Project ${i}`,
-          due: new Date(2022, 11, 25),
           description: `Description for project ${1}`,
         })),
       },
@@ -41,6 +40,8 @@ async function main() {
             projectId: project.id,
             description: `Everything that describes Task ${i}`,
             status: getRandomTaskStatus(),
+            startAt: new Date('2023-1-3T03:24:00'),
+            endAt: new Date('2023-1-17T03:24:00'),
           };
         }),
       })
