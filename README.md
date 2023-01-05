@@ -9,7 +9,7 @@ React v18, Next.js v13, TailwindCSS, PostgreSQL, Typescript.
 ## Features
 
 - [x] Authentication.
-- [ ] Create to-do, Set deadlines, Assign tasks to project, and track progress.
+- [x] Create to-do, Set deadlines, Assign tasks to project, and track progress.
 - [ ] Real-time notifications
 - [ ] Alerts to keep users on track and ensure that tasks are completed on time
 
