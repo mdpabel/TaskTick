@@ -24,6 +24,12 @@ const handler = nc<ReqType, NextApiResponse>({
       },
     });
 
+    if (!projects) {
+      return res.status(401).json({
+        data: [],
+      });
+    }
+
     res.status(200).json({
       data: projects,
     });
