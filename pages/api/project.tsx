@@ -16,23 +16,30 @@ const handler = nc<ReqType, NextApiResponse>({
 })
   .use(auth)
   .get(async (req, res) => {
-    const user = req.user;
+    try {
+      const user = req.user;
 
-    const projects = await prisma.project.findMany({
-      where: {
-        ownerId: user.id,
-      },
-    });
+      const projects = await prisma.project.findMany({
+        where: {
+          ownerId: user.id,
+        },
+      });
 
-    if (!projects) {
-      return res.status(401).json({
-        data: [],
+      if (!projects) {
+        return res.status(401).json({
+          data: [],
+        });
+      }
+
+      res.status(200).json({
+        data: projects,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        data: 'Something went wrong',
       });
     }
-
-    res.status(200).json({
-      data: projects,
-    });
   })
   .post(async (req, res) => {
     try {
