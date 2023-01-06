@@ -28,7 +28,7 @@ const Projects = async () => {
   return (
     <div>
       <div className='space-y-4'>
-        {projects.map((project) => (
+        {projects?.map((project) => (
           <Project key={project.id} project={project} />
         ))}
       </div>
