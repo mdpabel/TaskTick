@@ -24,6 +24,7 @@ const AddNewTask = () => {
   }, [run]);
 
   if (isError) {
+    console.log('Add new task ', error);
     return <div>Error</div>;
   }
 
