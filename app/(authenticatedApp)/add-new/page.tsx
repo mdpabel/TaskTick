@@ -12,8 +12,7 @@ const AddNew = () => {
         <div>
           <Title>List of projects</Title>
           <Suspense fallback='Project Loading...'>
-            {/* @ts-expect-error Server Component */}
-            <Projects />
+            {/* <Projects />  */}
           </Suspense>
         </div>
       </div>
