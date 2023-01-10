@@ -59,6 +59,7 @@ const handler = nc<ReqType, NextApiResponse>({
       console.error(error);
       res.status(500).json({
         data: 'Something went wrong',
+        error: error,
       });
     }
   });
