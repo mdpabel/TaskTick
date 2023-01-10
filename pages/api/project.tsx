@@ -14,6 +14,7 @@ const handler = nc<ReqType, NextApiResponse>({
     res.status(404).end('Page is not found!');
   },
 })
+  .use(auth)
   .get(async (req, res) => {
     try {
       const user = req.user;
@@ -41,7 +42,6 @@ const handler = nc<ReqType, NextApiResponse>({
       });
     }
   })
-  .use(auth)
   .post(async (req, res) => {
     try {
       const user = req.user;

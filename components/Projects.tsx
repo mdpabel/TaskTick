@@ -6,7 +6,6 @@ import { getUserFromCookies } from '@utils/jwtToken';
 const getData = async () => {
   const user = await getUserFromCookies(cookies());
 
-  console.log(user);
 
   const projects = await prisma.project.findMany({
     where: {

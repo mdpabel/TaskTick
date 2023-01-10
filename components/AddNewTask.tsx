@@ -10,12 +10,22 @@ import { useAsync } from './../hooks/useAsync';
 import { ProjectsType } from 'types/projectType';
 
 const AddNewTask = () => {
-  const { run, isLoading, data: projects } = useAsync<ProjectsType>();
+  const {
+    run,
+    isLoading,
+    data: projects,
+    error,
+    isError,
+  } = useAsync<ProjectsType>();
 
   useEffect(() => {
     const res = client('/api/project', {});
     run(res);
   }, [run]);
+
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   return (
     <form className='space-y-4'>
