@@ -12,7 +12,7 @@ const AddNew = () => {
         <div>
           <Title>List of projects</Title>
           <Suspense fallback='Project Loading...'>
-            {/* <Projects />  */}
+            <Projects />
           </Suspense>
         </div>
       </div>
